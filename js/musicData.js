@@ -1,245 +1,296 @@
-// Music Data with online streaming URLs
+// Tamil Music Data with online streaming URLs
 const musicData = {
     featuredPlaylists: [
         {
-            id: 'chill-vibes',
-            name: 'Chill Vibes',
-            description: 'Relaxing music for your peaceful moments',
+            id: 'ar-rahman-hits',
+            name: 'A.R. Rahman Hits',
+            description: 'Best of the Mozart of Madras',
             image: 'https://images.pexels.com/photos/1763075/pexels-photo-1763075.jpeg?auto=compress&cs=tinysrgb&w=300',
-            songs: ['song1', 'song5', 'song8', 'song12']
+            songs: ['song1', 'song2', 'song4', 'song7', 'song10']
         },
         {
-            id: 'workout-hits',
-            name: 'Workout Hits',
-            description: 'High-energy tracks to fuel your workout',
+            id: 'ilayaraja-classics',
+            name: 'Ilayaraja Classics',
+            description: 'Timeless melodies from the Maestro',
             image: 'https://images.pexels.com/photos/1552252/pexels-photo-1552252.jpeg?auto=compress&cs=tinysrgb&w=300',
-            songs: ['song3', 'song7', 'song11', 'song15']
+            songs: ['song3', 'song6', 'song9', 'song12', 'song15']
         },
         {
-            id: 'indie-favorites',
-            name: 'Indie Favorites',
-            description: 'Discover amazing independent artists',
+            id: 'anirudh-beats',
+            name: 'Anirudh Beats',
+            description: 'Modern Tamil music sensation',
             image: 'https://images.pexels.com/photos/1190297/pexels-photo-1190297.jpeg?auto=compress&cs=tinysrgb&w=300',
-            songs: ['song2', 'song6', 'song9', 'song14']
+            songs: ['song5', 'song8', 'song11', 'song14', 'song17']
         },
         {
-            id: 'electronic-beats',
-            name: 'Electronic Beats',
-            description: 'The best in electronic music',
+            id: 'yuvan-shankar',
+            name: 'Yuvan Shankar Raja',
+            description: 'Youth icon of Tamil music',
             image: 'https://images.pexels.com/photos/1105666/pexels-photo-1105666.jpeg?auto=compress&cs=tinysrgb&w=300',
-            songs: ['song4', 'song10', 'song13', 'song16']
+            songs: ['song13', 'song16', 'song18', 'song19', 'song20']
         }
     ],
 
     songs: {
         song1: {
             id: 'song1',
-            title: 'Sunset Dreams',
-            artist: 'Ambient Collective',
-            album: 'Peaceful Moments',
-            duration: '4:23',
+            title: 'Vande Mataram',
+            artist: 'A.R. Rahman',
+            album: 'Vande Mataram',
+            duration: '7:05',
             artwork: 'https://images.pexels.com/photos/1763075/pexels-photo-1763075.jpeg?auto=compress&cs=tinysrgb&w=300',
             url: 'https://www.soundjay.com/misc/sounds/bell-ringing-05.wav',
-            genre: 'Ambient'
+            genre: 'Patriotic'
         },
         song2: {
             id: 'song2',
-            title: 'City Lights',
-            artist: 'Urban Echo',
-            album: 'Metropolitan',
-            duration: '3:45',
-            artwork: 'https://images.pexels.com/photos/1190297/pexels-photo-1190297.jpeg?auto=compress&cs=tinysrgb&w=300',
+            title: 'Jai Ho',
+            artist: 'A.R. Rahman',
+            album: 'Slumdog Millionaire',
+            duration: '5:09',
+            artwork: 'https://images.pexels.com/photos/1763075/pexels-photo-1763075.jpeg?auto=compress&cs=tinysrgb&w=300',
             url: 'https://www.soundjay.com/misc/sounds/bell-ringing-05.wav',
-            genre: 'Indie'
+            genre: 'Film Music'
         },
         song3: {
             id: 'song3',
-            title: 'Power Up',
-            artist: 'Energy Boost',
-            album: 'Maximum Drive',
-            duration: '3:12',
+            title: 'Chinna Chinna Aasai',
+            artist: 'Ilayaraja, S.P. Balasubrahmanyam, S. Janaki',
+            album: 'Roja',
+            duration: '4:32',
             artwork: 'https://images.pexels.com/photos/1552252/pexels-photo-1552252.jpeg?auto=compress&cs=tinysrgb&w=300',
             url: 'https://www.soundjay.com/misc/sounds/bell-ringing-05.wav',
-            genre: 'Electronic'
+            genre: 'Melody'
         },
         song4: {
             id: 'song4',
-            title: 'Digital Horizon',
-            artist: 'Synth Wave',
-            album: 'Future Sounds',
-            duration: '5:01',
-            artwork: 'https://images.pexels.com/photos/1105666/pexels-photo-1105666.jpeg?auto=compress&cs=tinysrgb&w=300',
+            title: 'Roja Janeman',
+            artist: 'A.R. Rahman, Hariharan, K.S. Chithra',
+            album: 'Roja',
+            duration: '5:15',
+            artwork: 'https://images.pexels.com/photos/1763075/pexels-photo-1763075.jpeg?auto=compress&cs=tinysrgb&w=300',
             url: 'https://www.soundjay.com/misc/sounds/bell-ringing-05.wav',
-            genre: 'Electronic'
+            genre: 'Romance'
         },
         song5: {
             id: 'song5',
-            title: 'Morning Coffee',
-            artist: 'Café Sounds',
-            album: 'Daily Rituals',
-            duration: '4:15',
-            artwork: 'https://images.pexels.com/photos/302899/pexels-photo-302899.jpeg?auto=compress&cs=tinysrgb&w=300',
+            title: 'Why This Kolaveri Di',
+            artist: 'Anirudh Ravichander, Dhanush',
+            album: '3',
+            duration: '4:02',
+            artwork: 'https://images.pexels.com/photos/1190297/pexels-photo-1190297.jpeg?auto=compress&cs=tinysrgb&w=300',
             url: 'https://www.soundjay.com/misc/sounds/bell-ringing-05.wav',
-            genre: 'Jazz'
+            genre: 'Folk Pop'
         },
         song6: {
             id: 'song6',
-            title: 'Midnight Drive',
-            artist: 'Neon Nights',
-            album: 'After Hours',
-            duration: '4:33',
-            artwork: 'https://images.pexels.com/photos/1190297/pexels-photo-1190297.jpeg?auto=compress&cs=tinysrgb&w=300',
+            title: 'Ilamai Idho Idho',
+            artist: 'Ilayaraja, S.P. Balasubrahmanyam',
+            album: 'Sakalakalavallavan',
+            duration: '4:45',
+            artwork: 'https://images.pexels.com/photos/1552252/pexels-photo-1552252.jpeg?auto=compress&cs=tinysrgb&w=300',
             url: 'https://www.soundjay.com/misc/sounds/bell-ringing-05.wav',
-            genre: 'Synthwave'
+            genre: 'Classical'
         },
         song7: {
             id: 'song7',
-            title: 'Beast Mode',
-            artist: 'Gym Warriors',
-            album: 'Pump It Up',
-            duration: '3:28',
-            artwork: 'https://images.pexels.com/photos/1552252/pexels-photo-1552252.jpeg?auto=compress&cs=tinysrgb&w=300',
-            url: 'https://www.soundjay.com/misc/sounds/bell-ringing-05.wav',
-            genre: 'Hip Hop'
-        },
-        song8: {
-            id: 'song8',
-            title: 'Ocean Waves',
-            artist: 'Nature Sounds',
-            album: 'Serenity',
+            title: 'Mustafa Mustafa',
+            artist: 'A.R. Rahman, Udit Narayan, Jaspinder Narula',
+            album: 'Kadhal Desam',
             duration: '6:12',
             artwork: 'https://images.pexels.com/photos/1763075/pexels-photo-1763075.jpeg?auto=compress&cs=tinysrgb&w=300',
             url: 'https://www.soundjay.com/misc/sounds/bell-ringing-05.wav',
-            genre: 'Ambient'
+            genre: 'Qawwali'
+        },
+        song8: {
+            id: 'song8',
+            title: 'Thalli Pogathey',
+            artist: 'Anirudh Ravichander, Sid Sriram',
+            album: 'Achcham Yenbadhu Madamaiyada',
+            duration: '4:28',
+            artwork: 'https://images.pexels.com/photos/1190297/pexels-photo-1190297.jpeg?auto=compress&cs=tinysrgb&w=300',
+            url: 'https://www.soundjay.com/misc/sounds/bell-ringing-05.wav',
+            genre: 'Melody'
         },
         song9: {
             id: 'song9',
-            title: 'Vintage Vinyl',
-            artist: 'Retro Revival',
-            album: 'Old School',
-            duration: '3:56',
-            artwork: 'https://images.pexels.com/photos/1190297/pexels-photo-1190297.jpeg?auto=compress&cs=tinysrgb&w=300',
+            title: 'Nilave Vaa',
+            artist: 'Ilayaraja, S.P. Balasubrahmanyam, S. Janaki',
+            album: 'Mouna Ragam',
+            duration: '4:55',
+            artwork: 'https://images.pexels.com/photos/1552252/pexels-photo-1552252.jpeg?auto=compress&cs=tinysrgb&w=300',
             url: 'https://www.soundjay.com/misc/sounds/bell-ringing-05.wav',
-            genre: 'Rock'
+            genre: 'Romance'
         },
         song10: {
             id: 'song10',
-            title: 'Bass Drop',
-            artist: 'EDM Masters',
-            album: 'Festival Anthems',
-            duration: '4:44',
-            artwork: 'https://images.pexels.com/photos/1105666/pexels-photo-1105666.jpeg?auto=compress&cs=tinysrgb&w=300',
+            title: 'Dil Se Re',
+            artist: 'A.R. Rahman, Udit Narayan, Anupama Deshpande',
+            album: 'Dil Se',
+            duration: '5:33',
+            artwork: 'https://images.pexels.com/photos/1763075/pexels-photo-1763075.jpeg?auto=compress&cs=tinysrgb&w=300',
             url: 'https://www.soundjay.com/misc/sounds/bell-ringing-05.wav',
-            genre: 'EDM'
+            genre: 'Sufi'
         },
         song11: {
             id: 'song11',
-            title: 'Run Fast',
-            artist: 'Cardio Kings',
-            album: 'High Intensity',
-            duration: '3:21',
-            artwork: 'https://images.pexels.com/photos/1552252/pexels-photo-1552252.jpeg?auto=compress&cs=tinysrgb&w=300',
-            url: 'https://www.soundjay.com/misc/sounds/bell-ringing-05.wav',
-            genre: 'Electronic'
-        },
-        song12: {
-            id: 'song12',
-            title: 'Peaceful Mind',
-            artist: 'Meditation Music',
-            album: 'Inner Peace',
-            duration: '7:30',
-            artwork: 'https://images.pexels.com/photos/1763075/pexels-photo-1763075.jpeg?auto=compress&cs=tinysrgb&w=300',
-            url: 'https://www.soundjay.com/misc/sounds/bell-ringing-05.wav',
-            genre: 'Ambient'
-        },
-        song13: {
-            id: 'song13',
-            title: 'Cyber Punk',
-            artist: 'Future Bass',
-            album: '2077',
-            duration: '4:18',
-            artwork: 'https://images.pexels.com/photos/1105666/pexels-photo-1105666.jpeg?auto=compress&cs=tinysrgb&w=300',
-            url: 'https://www.soundjay.com/misc/sounds/bell-ringing-05.wav',
-            genre: 'Electronic'
-        },
-        song14: {
-            id: 'song14',
-            title: 'Coffee Shop',
-            artist: 'Indie Acoustic',
-            album: 'Cozy Corners',
-            duration: '3:42',
-            artwork: 'https://images.pexels.com/photos/1190297/pexels-photo-1190297.jpeg?auto=compress&cs=tinysrgb&w=300',
-            url: 'https://www.soundjay.com/misc/sounds/bell-ringing-05.wav',
-            genre: 'Indie'
-        },
-        song15: {
-            id: 'song15',
-            title: 'Adrenaline Rush',
-            artist: 'Extreme Sports',
-            album: 'No Limits',
-            duration: '3:15',
-            artwork: 'https://images.pexels.com/photos/1552252/pexels-photo-1552252.jpeg?auto=compress&cs=tinysrgb&w=300',
-            url: 'https://www.soundjay.com/misc/sounds/bell-ringing-05.wav',
-            genre: 'Rock'
-        },
-        song16: {
-            id: 'song16',
-            title: 'Neon Lights',
-            artist: 'Synthwave 80s',
-            album: 'Retro Future',
-            duration: '4:52',
-            artwork: 'https://images.pexels.com/photos/1105666/pexels-photo-1105666.jpeg?auto=compress&cs=tinysrgb&w=300',
-            url: 'https://www.soundjay.com/misc/sounds/bell-ringing-05.wav',
-            genre: 'Synthwave'
-        },
-        song17: {
-            id: 'song17',
-            title: 'Summer Breeze',
-            artist: 'Tropical House',
-            album: 'Island Vibes',
-            duration: '3:38',
-            artwork: 'https://images.pexels.com/photos/1763075/pexels-photo-1763075.jpeg?auto=compress&cs=tinysrgb&w=300',
-            url: 'https://www.soundjay.com/misc/sounds/bell-ringing-05.wav',
-            genre: 'House'
-        },
-        song18: {
-            id: 'song18',
-            title: 'Urban Jungle',
-            artist: 'Street Beats',
-            album: 'City Life',
-            duration: '4:07',
+            title: 'Surviva',
+            artist: 'Anirudh Ravichander, Yogi B, Mali',
+            album: 'Vivegam',
+            duration: '3:45',
             artwork: 'https://images.pexels.com/photos/1190297/pexels-photo-1190297.jpeg?auto=compress&cs=tinysrgb&w=300',
             url: 'https://www.soundjay.com/misc/sounds/bell-ringing-05.wav',
             genre: 'Hip Hop'
         },
-        song19: {
-            id: 'song19',
-            title: 'Starlight',
-            artist: 'Dream Pop',
-            album: 'Celestial',
-            duration: '5:23',
-            artwork: 'https://images.pexels.com/photos/1763075/pexels-photo-1763075.jpeg?auto=compress&cs=tinysrgb&w=300',
+        song12: {
+            id: 'song12',
+            title: 'Mannil Indha Kadhalandri',
+            artist: 'Ilayaraja, S.P. Balasubrahmanyam',
+            album: 'Keladi Kanmani',
+            duration: '4:18',
+            artwork: 'https://images.pexels.com/photos/1552252/pexels-photo-1552252.jpeg?auto=compress&cs=tinysrgb&w=300',
+            url: 'https://www.soundjay.com/misc/sounds/bell-ringing-05.wav',
+            genre: 'Classical'
+        },
+        song13: {
+            id: 'song13',
+            title: 'Evan Di Unna Pethan',
+            artist: 'Yuvan Shankar Raja, Benny Dayal',
+            album: 'Vaaranam Aayiram',
+            duration: '4:12',
+            artwork: 'https://images.pexels.com/photos/1105666/pexels-photo-1105666.jpeg?auto=compress&cs=tinysrgb&w=300',
             url: 'https://www.soundjay.com/misc/sounds/bell-ringing-05.wav',
             genre: 'Pop'
         },
-        song20: {
-            id: 'song20',
-            title: 'Thunder Storm',
-            artist: 'Epic Orchestra',
-            album: 'Cinematic',
-            duration: '6:45',
+        song14: {
+            id: 'song14',
+            title: 'Kaththi Theme',
+            artist: 'Anirudh Ravichander',
+            album: 'Kaththi',
+            duration: '2:58',
+            artwork: 'https://images.pexels.com/photos/1190297/pexels-photo-1190297.jpeg?auto=compress&cs=tinysrgb&w=300',
+            url: 'https://www.soundjay.com/misc/sounds/bell-ringing-05.wav',
+            genre: 'Theme'
+        },
+        song15: {
+            id: 'song15',
+            title: 'Sundari Kannal Oru Sethi',
+            artist: 'Ilayaraja, S.P. Balasubrahmanyam, S. Janaki',
+            album: 'Thalapathi',
+            duration: '5:02',
+            artwork: 'https://images.pexels.com/photos/1552252/pexels-photo-1552252.jpeg?auto=compress&cs=tinysrgb&w=300',
+            url: 'https://www.soundjay.com/misc/sounds/bell-ringing-05.wav',
+            genre: 'Duet'
+        },
+        song16: {
+            id: 'song16',
+            title: 'Yaaradi Nee Mohini',
+            artist: 'Yuvan Shankar Raja, Dhanush',
+            album: 'Yaaradi Nee Mohini',
+            duration: '4:35',
             artwork: 'https://images.pexels.com/photos/1105666/pexels-photo-1105666.jpeg?auto=compress&cs=tinysrgb&w=300',
             url: 'https://www.soundjay.com/misc/sounds/bell-ringing-05.wav',
-            genre: 'Orchestral'
+            genre: 'Romance'
+        },
+        song17: {
+            id: 'song17',
+            title: 'Maari Thara Local',
+            artist: 'Anirudh Ravichander, Dhanush',
+            album: 'Maari',
+            duration: '3:52',
+            artwork: 'https://images.pexels.com/photos/1190297/pexels-photo-1190297.jpeg?auto=compress&cs=tinysrgb&w=300',
+            url: 'https://www.soundjay.com/misc/sounds/bell-ringing-05.wav',
+            genre: 'Kuthu'
+        },
+        song18: {
+            id: 'song18',
+            title: 'Loosu Penne',
+            artist: 'Yuvan Shankar Raja, Vijay Yesudas',
+            album: 'Vallavan',
+            duration: '4:22',
+            artwork: 'https://images.pexels.com/photos/1105666/pexels-photo-1105666.jpeg?auto=compress&cs=tinysrgb&w=300',
+            url: 'https://www.soundjay.com/misc/sounds/bell-ringing-05.wav',
+            genre: 'Melody'
+        },
+        song19: {
+            id: 'song19',
+            title: 'Kadhal Anukkal',
+            artist: 'Yuvan Shankar Raja, Harish Raghavendra',
+            album: 'Enthiran',
+            duration: '4:48',
+            artwork: 'https://images.pexels.com/photos/1105666/pexels-photo-1105666.jpeg?auto=compress&cs=tinysrgb&w=300',
+            url: 'https://www.soundjay.com/misc/sounds/bell-ringing-05.wav',
+            genre: 'Romance'
+        },
+        song20: {
+            id: 'song20',
+            title: 'Paiya',
+            artist: 'Yuvan Shankar Raja, Blaaze',
+            album: 'Paiya',
+            duration: '4:15',
+            artwork: 'https://images.pexels.com/photos/1105666/pexels-photo-1105666.jpeg?auto=compress&cs=tinysrgb&w=300',
+            url: 'https://www.soundjay.com/misc/sounds/bell-ringing-05.wav',
+            genre: 'Hip Hop'
+        },
+        song21: {
+            id: 'song21',
+            title: 'Ponni Nadhi',
+            artist: 'A.R. Rahman, A.R. Rehana, Bamba Bakya',
+            album: 'Ponniyin Selvan',
+            duration: '4:23',
+            artwork: 'https://images.pexels.com/photos/1763075/pexels-photo-1763075.jpeg?auto=compress&cs=tinysrgb&w=300',
+            url: 'https://www.soundjay.com/misc/sounds/bell-ringing-05.wav',
+            genre: 'Epic'
+        },
+        song22: {
+            id: 'song22',
+            title: 'Alaikadal',
+            artist: 'A.R. Rahman, Antara Nandy',
+            album: 'Ponniyin Selvan',
+            duration: '4:12',
+            artwork: 'https://images.pexels.com/photos/1763075/pexels-photo-1763075.jpeg?auto=compress&cs=tinysrgb&w=300',
+            url: 'https://www.soundjay.com/misc/sounds/bell-ringing-05.wav',
+            genre: 'Classical'
+        },
+        song23: {
+            id: 'song23',
+            title: 'Ratchasa Maamaney',
+            artist: 'Shreya Goshal, Palakad Sreeram',
+            album: 'Ponniyin Selvan',
+            duration: '3:56',
+            artwork: 'https://images.pexels.com/photos/1763075/pexels-photo-1763075.jpeg?auto=compress&cs=tinysrgb&w=300',
+            url: 'https://www.soundjay.com/misc/sounds/bell-ringing-05.wav',
+            genre: 'Folk'
+        },
+        song24: {
+            id: 'song24',
+            title: 'Chola Chola',
+            artist: 'Sathyaprakash, VM Mahalingam',
+            album: 'Ponniyin Selvan',
+            duration: '4:44',
+            artwork: 'https://images.pexels.com/photos/1763075/pexels-photo-1763075.jpeg?auto=compress&cs=tinysrgb&w=300',
+            url: 'https://www.soundjay.com/misc/sounds/bell-ringing-05.wav',
+            genre: 'War Song'
+        },
+        song25: {
+            id: 'song25',
+            title: 'Vaathi Coming',
+            artist: 'Anirudh Ravichander, Gana Balachandar',
+            album: 'Master',
+            duration: '3:28',
+            artwork: 'https://images.pexels.com/photos/1190297/pexels-photo-1190297.jpeg?auto=compress&cs=tinysrgb&w=300',
+            url: 'https://www.soundjay.com/misc/sounds/bell-ringing-05.wav',
+            genre: 'Mass'
         }
     },
 
-    // Popular songs list (references to song IDs)
+    // Popular Tamil songs list
     popularSongs: [
         'song1', 'song2', 'song3', 'song4', 'song5', 
         'song6', 'song7', 'song8', 'song9', 'song10',
         'song11', 'song12', 'song13', 'song14', 'song15',
-        'song16', 'song17', 'song18', 'song19', 'song20'
+        'song16', 'song17', 'song18', 'song19', 'song20',
+        'song21', 'song22', 'song23', 'song24', 'song25'
     ],
 
     // User data (stored in localStorage)
@@ -305,6 +356,13 @@ const musicData = {
     getSongsByGenre(genre) {
         return Object.values(this.songs).filter(song => 
             song.genre.toLowerCase() === genre.toLowerCase()
+        );
+    },
+
+    // Get songs by composer
+    getSongsByComposer(composer) {
+        return Object.values(this.songs).filter(song => 
+            song.artist.toLowerCase().includes(composer.toLowerCase())
         );
     }
 };
