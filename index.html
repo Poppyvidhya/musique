@@ -3,8 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>MusiQue - Stream Your Favorite Music</title>
+    <title>MusiQue - Stream Your Favorite Tamil Music</title>
     <link rel="stylesheet" href="styles/main.css">
+    <link rel="stylesheet" href="styles/modals.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -51,7 +52,7 @@
                     <div class="avatar">
                         <i class="fas fa-user"></i>
                     </div>
-                    <span>Music Lover</span>
+                    <span>Tamil Music Lover</span>
                 </div>
             </div>
         </aside>
@@ -62,7 +63,7 @@
                 <div class="search-container">
                     <div class="search-box">
                         <i class="fas fa-search"></i>
-                        <input type="text" id="searchInput" placeholder="Search for songs, artists, or albums...">
+                        <input type="text" id="searchInput" placeholder="Search for Tamil songs, artists, or albums...">
                     </div>
                 </div>
                 <div class="user-actions">
@@ -79,8 +80,8 @@
                 <!-- Home Section -->
                 <section id="home" class="content-section active">
                     <div class="hero-section">
-                        <h1>Welcome back!</h1>
-                        <p>Discover new music and enjoy your favorites</p>
+                        <h1>Welcome to Tamil Music Paradise!</h1>
+                        <p>Discover the best of Tamil cinema music and independent artists</p>
                     </div>
 
                     <div class="section-header">
@@ -91,7 +92,7 @@
                     </div>
 
                     <div class="section-header">
-                        <h2>Popular Songs</h2>
+                        <h2>Popular Tamil Songs</h2>
                     </div>
                     <div class="song-list" id="popularSongs">
                         <!-- Songs will be populated by JavaScript -->
@@ -103,7 +104,11 @@
                     <div class="search-results">
                         <h2>Search Results</h2>
                         <div class="results-container" id="searchResults">
-                            <p class="no-results">Start typing to search for music...</p>
+                            <div class="search-empty">
+                                <i class="fas fa-search fa-3x"></i>
+                                <h3>Search for Tamil music</h3>
+                                <p>Find your favorite Tamil songs, artists, and albums</p>
+                            </div>
                         </div>
                     </div>
                 </section>
@@ -154,7 +159,7 @@
                     <img id="currentArtwork" src="https://images.pexels.com/photos/1763075/pexels-photo-1763075.jpeg?auto=compress&cs=tinysrgb&w=300" alt="Current Song">
                 </div>
                 <div class="song-details">
-                    <div class="song-title" id="currentTitle">Select a song</div>
+                    <div class="song-title" id="currentTitle">Select a Tamil song</div>
                     <div class="song-artist" id="currentArtist">Artist</div>
                 </div>
                 <button class="btn-icon favorite-btn" id="favoriteBtn">
@@ -238,10 +243,13 @@
     </div>
 
     <!-- Audio Element -->
-    <audio id="audioPlayer" preload="metadata"></audio>
+    <audio id="audioPlayer" preload="metadata" crossorigin="anonymous"></audio>
 
     <!-- Scripts -->
     <script src="js/musicData.js"></script>
+    <script src="js/modals.js"></script>
     <script src="js/player.js"></script>
     <script src="js/ui.js"></script>
     <script src="js/app.js"></script>
+</body>
+</html>

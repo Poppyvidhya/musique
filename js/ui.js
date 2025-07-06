@@ -76,7 +76,7 @@ class UIManager {
         const createPlaylistBtn = document.getElementById('createPlaylist');
         if (createPlaylistBtn) {
             createPlaylistBtn.addEventListener('click', () => {
-                this.createPlaylist();
+                modalManager.showCreatePlaylistModal();
             });
         }
     }
@@ -134,6 +134,14 @@ class UIManager {
                     <i class="fas fa-search fa-3x"></i>
                     <h3>Search for Tamil music</h3>
                     <p>Find your favorite Tamil songs, artists, and albums</p>
+                    <ul class="search-suggestions">
+                        <li onclick="uiManager.searchInput.value='A.R. Rahman'; uiManager.handleSearch('A.R. Rahman')">A.R. Rahman</li>
+                        <li onclick="uiManager.searchInput.value='Ilayaraja'; uiManager.handleSearch('Ilayaraja')">Ilayaraja</li>
+                        <li onclick="uiManager.searchInput.value='Anirudh'; uiManager.handleSearch('Anirudh')">Anirudh</li>
+                        <li onclick="uiManager.searchInput.value='Yuvan Shankar Raja'; uiManager.handleSearch('Yuvan Shankar Raja')">Yuvan Shankar Raja</li>
+                        <li onclick="uiManager.searchInput.value='Roja'; uiManager.handleSearch('Roja')">Roja</li>
+                        <li onclick="uiManager.searchInput.value='Ponniyin Selvan'; uiManager.handleSearch('Ponniyin Selvan')">Ponniyin Selvan</li>
+                    </ul>
                 </div>
             `;
             return;
@@ -163,12 +171,12 @@ class UIManager {
                     <h3>No results found</h3>
                     <p>No Tamil songs found for "${query}". Try searching for:</p>
                     <ul class="search-suggestions">
-                        <li>A.R. Rahman</li>
-                        <li>Ilayaraja</li>
-                        <li>Anirudh</li>
-                        <li>Yuvan Shankar Raja</li>
-                        <li>Roja</li>
-                        <li>Ponniyin Selvan</li>
+                        <li onclick="uiManager.searchInput.value='A.R. Rahman'; uiManager.handleSearch('A.R. Rahman')">A.R. Rahman</li>
+                        <li onclick="uiManager.searchInput.value='Ilayaraja'; uiManager.handleSearch('Ilayaraja')">Ilayaraja</li>
+                        <li onclick="uiManager.searchInput.value='Anirudh'; uiManager.handleSearch('Anirudh')">Anirudh</li>
+                        <li onclick="uiManager.searchInput.value='Yuvan Shankar Raja'; uiManager.handleSearch('Yuvan Shankar Raja')">Yuvan Shankar Raja</li>
+                        <li onclick="uiManager.searchInput.value='Roja'; uiManager.handleSearch('Roja')">Roja</li>
+                        <li onclick="uiManager.searchInput.value='Ponniyin Selvan'; uiManager.handleSearch('Ponniyin Selvan')">Ponniyin Selvan</li>
                     </ul>
                 </div>
             `;
@@ -294,7 +302,7 @@ class UIManager {
         container.querySelectorAll('.add-to-playlist').forEach(btn => {
             btn.addEventListener('click', (e) => {
                 e.stopPropagation();
-                this.showAddToPlaylistModal(btn.dataset.songId);
+                modalManager.showAddToPlaylistModal(btn.dataset.songId);
             });
         });
     }
@@ -327,8 +335,10 @@ class UIManager {
         
         if (index > -1) {
             userData.favorites.splice(index, 1);
+            modalManager.showToast('Removed from favorites', 'info');
         } else {
             userData.favorites.push(songId);
+            modalManager.showToast('Added to favorites', 'success');
         }
         
         musicData.saveUserData(userData);
@@ -501,19 +511,12 @@ class UIManager {
                     <i class="fas fa-music fa-3x"></i>
                     <h3>No playlists yet</h3>
                     <p>Create your first playlist to organize your favorite Tamil songs</p>
-                    <button class="btn-primary" id="createFirstPlaylist">
+                    <button class="btn-primary" onclick="modalManager.showCreatePlaylistModal()">
                         <i class="fas fa-plus"></i>
                         Create Your First Playlist
                     </button>
                 </div>
             `;
-            
-            const createFirstBtn = document.getElementById('createFirstPlaylist');
-            if (createFirstBtn) {
-                createFirstBtn.addEventListener('click', () => {
-                    this.createPlaylist();
-                });
-            }
             return;
         }
 
@@ -527,7 +530,8 @@ class UIManager {
                 </div>
                 <div class="playlist-info">
                     <h3>${playlist.name}</h3>
-                    <p>${playlist.songs.length} songs</p>
+                    <p>${playlist.description || ''}</p>
+                    <span class="song-count">${playlist.songs.length} songs</span>
                     <div class="playlist-actions">
                         <button class="btn-icon edit-playlist" data-playlist-id="${playlist.id}" title="Edit playlist">
                             <i class="fas fa-edit"></i>
@@ -561,7 +565,7 @@ class UIManager {
         this.userPlaylists.querySelectorAll('.edit-playlist').forEach(btn => {
             btn.addEventListener('click', (e) => {
                 e.stopPropagation();
-                this.editPlaylist(btn.dataset.playlistId);
+                modalManager.showEditPlaylistModal(btn.dataset.playlistId);
             });
         });
 
@@ -574,95 +578,35 @@ class UIManager {
         });
     }
 
-    createPlaylist() {
-        const name = prompt('Enter playlist name:');
-        if (!name || name.trim() === '') return;
-
-        const userData = musicData.getUserData();
-        const newPlaylist = {
-            id: 'playlist_' + Date.now(),
-            name: name.trim(),
-            songs: [],
-            createdAt: new Date().toISOString(),
-            image: 'https://images.pexels.com/photos/1763075/pexels-photo-1763075.jpeg?auto=compress&cs=tinysrgb&w=300'
-        };
-
-        userData.playlists.push(newPlaylist);
-        musicData.saveUserData(userData);
-        
-        this.loadUserPlaylists();
-        
-        // Show success message
-        this.showToast('Playlist created successfully!', 'success');
-    }
-
-    editPlaylist(playlistId) {
+    deletePlaylist(playlistId) {
         const userData = musicData.getUserData();
         const playlist = userData.playlists.find(p => p.id === playlistId);
+        
         if (!playlist) return;
 
-        const newName = prompt('Enter new playlist name:', playlist.name);
-        if (!newName || newName.trim() === '') return;
-
-        playlist.name = newName.trim();
-        musicData.saveUserData(userData);
-        
-        this.loadUserPlaylists();
-        this.showToast('Playlist updated successfully!', 'success');
-    }
-
-    deletePlaylist(playlistId) {
-        if (!confirm('Are you sure you want to delete this playlist?')) return;
-
-        const userData = musicData.getUserData();
-        userData.playlists = userData.playlists.filter(p => p.id !== playlistId);
-        musicData.saveUserData(userData);
-        
-        this.loadUserPlaylists();
-        this.showToast('Playlist deleted successfully!', 'success');
+        modalManager.showConfirmModal(
+            'Delete Playlist',
+            `Are you sure you want to delete "${playlist.name}"? This action cannot be undone.`,
+            () => {
+                userData.playlists = userData.playlists.filter(p => p.id !== playlistId);
+                musicData.saveUserData(userData);
+                this.loadUserPlaylists();
+                modalManager.showToast('Playlist deleted successfully!', 'success');
+            }
+        );
     }
 
     playUserPlaylist(playlistId) {
         const userData = musicData.getUserData();
         const playlist = userData.playlists.find(p => p.id === playlistId);
         if (!playlist || playlist.songs.length === 0) {
-            this.showToast('This playlist is empty!', 'warning');
+            modalManager.showToast('This playlist is empty!', 'warning');
             return;
         }
 
         const songs = playlist.songs.map(id => musicData.songs[id]).filter(Boolean);
         if (songs.length > 0 && musicPlayer) {
             musicPlayer.playSong(songs[0], songs);
-        }
-    }
-
-    showAddToPlaylistModal(songId) {
-        const userData = musicData.getUserData();
-        
-        if (userData.playlists.length === 0) {
-            if (confirm('You need to create a playlist first. Would you like to create one now?')) {
-                this.createPlaylist();
-            }
-            return;
-        }
-
-        // Simple implementation - in a real app, you'd show a proper modal
-        const playlistNames = userData.playlists.map((p, i) => `${i + 1}. ${p.name}`);
-        const message = `Add to playlist:\n\n${playlistNames.join('\n')}\n\nEnter playlist number:`;
-        const selectedPlaylist = prompt(message);
-        
-        if (!selectedPlaylist) return;
-        
-        const playlistIndex = parseInt(selectedPlaylist) - 1;
-        if (playlistIndex >= 0 && playlistIndex < userData.playlists.length) {
-            const playlist = userData.playlists[playlistIndex];
-            if (!playlist.songs.includes(songId)) {
-                playlist.songs.push(songId);
-                musicData.saveUserData(userData);
-                this.showToast('Song added to playlist!', 'success');
-            } else {
-                this.showToast('Song is already in this playlist!', 'warning');
-            }
         }
     }
 
@@ -694,39 +638,6 @@ class UIManager {
             const icon = this.themeToggle.querySelector('i');
             icon.className = theme === 'light' ? 'fas fa-sun' : 'fas fa-moon';
         }
-    }
-
-    showToast(message, type = 'info') {
-        const toast = document.createElement('div');
-        toast.className = `toast ${type}`;
-        toast.textContent = message;
-        
-        const colors = {
-            success: '#1db954',
-            warning: '#ffa500',
-            error: '#e22134',
-            info: '#1db954'
-        };
-        
-        toast.style.cssText = `
-            position: fixed;
-            top: 20px;
-            right: 20px;
-            background: ${colors[type]};
-            color: white;
-            padding: 12px 24px;
-            border-radius: 8px;
-            z-index: 10000;
-            animation: slideIn 0.3s ease-out;
-            box-shadow: 0 4px 16px rgba(0, 0, 0, 0.2);
-        `;
-
-        document.body.appendChild(toast);
-
-        setTimeout(() => {
-            toast.style.animation = 'slideOut 0.3s ease-out';
-            setTimeout(() => toast.remove(), 300);
-        }, 3000);
     }
 }
 
