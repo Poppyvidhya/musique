@@ -1,100 +1,247 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <meta charset="UTF-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>MusiQue - Your favourite music is here</title>
-        <link rel="stylesheet" href="style.css">
-        </head>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MusiQue - Stream Your Favorite Music</title>
+    <link rel="stylesheet" href="styles/main.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
 <body>
-    <nav>
-        <ul>
-            <li class="brand"><img src="logo.jpg" alt="MusiQue"> MusiQue</li>
-            
-       <li> <a href="home.html" style="color: white;">EXPLORE</a></li>
-           <li><a href="about.html" style="color: white;">ABOUT</a></li>
-            </ul>
-        
-    </nav>
-
-    <div class="container">
-        <div class="songList">
-            <h1>Best of NCS - No Copyright Sounds</h1>
-            
-            <div class="songItemContainer">
-                <div class="songItem">
-                    <img alt="1">
-                    <span class="songName">Ponni Nadhi</span>
-                    <span class="songlistplay"><span class="timestamp">04:53 <i id="0" class="far songItemPlay fa-play-circle"></i> </span></span>
-                </div>
-                <div class="songItem">
-                    <img alt="1">
-                    <span class="songName">Alaikadal</span>
-                    <span class="songlistplay"><span class="timestamp">05:14 <i id="1" class="far songItemPlay fa-play-circle"></i> </span></span>
-                </div>
-                <div class="songItem">
-                    <img alt="1">
-                    <span class="songName">Ratchasa Maamaney</span>
-                    <span class="songlistplay"><span class="timestamp">04:50 <i id="2" class="far songItemPlay fa-play-circle"></i> </span></span>
-                </div>
-                <div class="songItem">
-                    <img alt="1">
-                    <span class="songName">Devaralan Aattam</span>
-                    <span class="songlistplay"><span class="timestamp">04:33 <i id="3" class="far songItemPlay fa-play-circle"></i> </span></span>
-                </div>
-                <div class="songItem">
-                    <img alt="1">
-                    <span class="songName">Chola Chola</span>
-                    <span class="songlistplay"><span class="timestamp">03:39 <i id="4" class="far songItemPlay fa-play-circle"></i> </span></span>
-                </div>
-                <div class="songItem">
-                    <img alt="1">
-                    <span class="songName">Sol</span>
-                    <span class="songlistplay"><span class="timestamp">02:14 <i id="5" class="far songItemPlay fa-play-circle"></i> </span></span>
-                </div>
-                <div class="songItem">
-                    <img alt="1">
-                    <span class="songName">Kaalathukkum Nee Venum</span>
-                    <span class="songlistplay"><span class="timestamp">04:54 <i id="6" class="far songItemPlay fa-play-circle"></i> </span></span>
-                </div>
-                <div class="songItem">
-                    <img alt="1">
-                    <span class="songName">Marakkuma Nenjam</span>
-                    <span class="songlistplay"><span class="timestamp">04:18 <i id="7" class="far songItemPlay fa-play-circle"></i> </span></span>
-                </div>
-                <div class="songItem">
-                    <img alt="1">
-                    <span class="songName">Unna Nenachadhum</span>
-                    <span class="songlistplay"><span class="timestamp">03:57 <i id="8" class="far songItemPlay fa-play-circle"></i> </span></span>
-                </div>
-                <div class="songItem">
-                    <img alt="1">
-                    <span class="songName">Mallipoo</span>
-                    <span class="songlistplay"><span class="timestamp">04:05 <i id="9" class="far songItemPlay fa-play-circle"></i> </span></span>
+    <div class="app-container">
+        <!-- Sidebar -->
+        <aside class="sidebar">
+            <div class="sidebar-header">
+                <div class="logo">
+                    <i class="fas fa-music"></i>
+                    <span>MusiQue</span>
                 </div>
             </div>
+            
+            <nav class="sidebar-nav">
+                <ul>
+                    <li class="nav-item active" data-section="home">
+                        <i class="fas fa-home"></i>
+                        <span>Home</span>
+                    </li>
+                    <li class="nav-item" data-section="search">
+                        <i class="fas fa-search"></i>
+                        <span>Search</span>
+                    </li>
+                    <li class="nav-item" data-section="library">
+                        <i class="fas fa-book"></i>
+                        <span>Your Library</span>
+                    </li>
+                    <li class="nav-item" data-section="playlists">
+                        <i class="fas fa-list"></i>
+                        <span>Playlists</span>
+                    </li>
+                    <li class="nav-item" data-section="favorites">
+                        <i class="fas fa-heart"></i>
+                        <span>Liked Songs</span>
+                    </li>
+                </ul>
+            </nav>
+            
+            <div class="sidebar-footer">
+                <div class="user-profile">
+                    <div class="avatar">
+                        <i class="fas fa-user"></i>
+                    </div>
+                    <span>Music Lover</span>
+                </div>
+            </div>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <header class="top-bar">
+                <div class="search-container">
+                    <div class="search-box">
+                        <i class="fas fa-search"></i>
+                        <input type="text" id="searchInput" placeholder="Search for songs, artists, or albums...">
+                    </div>
+                </div>
+                <div class="user-actions">
+                    <button class="btn-icon" id="themeToggle">
+                        <i class="fas fa-moon"></i>
+                    </button>
+                    <button class="btn-icon" id="volumeBtn">
+                        <i class="fas fa-volume-up"></i>
+                    </button>
+                </div>
+            </header>
+
+            <div class="content-area">
+                <!-- Home Section -->
+                <section id="home" class="content-section active">
+                    <div class="hero-section">
+                        <h1>Welcome back!</h1>
+                        <p>Discover new music and enjoy your favorites</p>
+                    </div>
+
+                    <div class="section-header">
+                        <h2>Featured Playlists</h2>
+                    </div>
+                    <div class="playlist-grid" id="featuredPlaylists">
+                        <!-- Playlists will be populated by JavaScript -->
+                    </div>
+
+                    <div class="section-header">
+                        <h2>Popular Songs</h2>
+                    </div>
+                    <div class="song-list" id="popularSongs">
+                        <!-- Songs will be populated by JavaScript -->
+                    </div>
+                </section>
+
+                <!-- Search Section -->
+                <section id="search" class="content-section">
+                    <div class="search-results">
+                        <h2>Search Results</h2>
+                        <div class="results-container" id="searchResults">
+                            <p class="no-results">Start typing to search for music...</p>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Library Section -->
+                <section id="library" class="content-section">
+                    <h2>Your Library</h2>
+                    <div class="library-content">
+                        <div class="library-tabs">
+                            <button class="tab-btn active" data-tab="recent">Recently Played</button>
+                            <button class="tab-btn" data-tab="artists">Artists</button>
+                            <button class="tab-btn" data-tab="albums">Albums</button>
+                        </div>
+                        <div class="tab-content" id="libraryContent">
+                            <!-- Content will be populated by JavaScript -->
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Playlists Section -->
+                <section id="playlists" class="content-section">
+                    <div class="playlists-header">
+                        <h2>Your Playlists</h2>
+                        <button class="btn-primary" id="createPlaylist">
+                            <i class="fas fa-plus"></i>
+                            Create Playlist
+                        </button>
+                    </div>
+                    <div class="playlists-grid" id="userPlaylists">
+                        <!-- User playlists will be populated by JavaScript -->
+                    </div>
+                </section>
+
+                <!-- Favorites Section -->
+                <section id="favorites" class="content-section">
+                    <h2>Liked Songs</h2>
+                    <div class="favorites-list" id="favoritesList">
+                        <!-- Favorite songs will be populated by JavaScript -->
+                    </div>
+                </section>
+            </div>
+        </main>
+
+        <!-- Music Player -->
+        <div class="music-player">
+            <div class="player-info">
+                <div class="song-artwork">
+                    <img id="currentArtwork" src="https://images.pexels.com/photos/1763075/pexels-photo-1763075.jpeg?auto=compress&cs=tinysrgb&w=300" alt="Current Song">
+                </div>
+                <div class="song-details">
+                    <div class="song-title" id="currentTitle">Select a song</div>
+                    <div class="song-artist" id="currentArtist">Artist</div>
+                </div>
+                <button class="btn-icon favorite-btn" id="favoriteBtn">
+                    <i class="far fa-heart"></i>
+                </button>
+            </div>
+
+            <div class="player-controls">
+                <div class="control-buttons">
+                    <button class="btn-icon" id="shuffleBtn">
+                        <i class="fas fa-random"></i>
+                    </button>
+                    <button class="btn-icon" id="prevBtn">
+                        <i class="fas fa-step-backward"></i>
+                    </button>
+                    <button class="btn-icon play-btn" id="playBtn">
+                        <i class="fas fa-play"></i>
+                    </button>
+                    <button class="btn-icon" id="nextBtn">
+                        <i class="fas fa-step-forward"></i>
+                    </button>
+                    <button class="btn-icon" id="repeatBtn">
+                        <i class="fas fa-redo"></i>
+                    </button>
+                </div>
+                
+                <div class="progress-container">
+                    <span class="time-display" id="currentTime">0:00</span>
+                    <div class="progress-bar">
+                        <input type="range" id="progressSlider" min="0" max="100" value="0">
+                        <div class="progress-fill"></div>
+                    </div>
+                    <span class="time-display" id="totalTime">0:00</span>
+                </div>
+            </div>
+
+            <div class="player-extras">
+                <button class="btn-icon" id="queueBtn">
+                    <i class="fas fa-list"></i>
+                </button>
+                <div class="volume-control">
+                    <button class="btn-icon" id="muteBtn">
+                        <i class="fas fa-volume-up"></i>
+                    </button>
+                    <input type="range" id="volumeSlider" min="0" max="100" value="70">
+                </div>
+                <button class="btn-icon" id="fullscreenBtn">
+                    <i class="fas fa-expand"></i>
+                </button>
+            </div>
         </div>
-        <div class="songBanner"></div>
+
+        <!-- Queue Sidebar -->
+        <div class="queue-sidebar" id="queueSidebar">
+            <div class="queue-header">
+                <h3>Queue</h3>
+                <button class="btn-icon" id="closeQueue">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <div class="queue-content" id="queueContent">
+                <!-- Queue items will be populated by JavaScript -->
+            </div>
+        </div>
+
+        <!-- Visualizer -->
+        <div class="visualizer" id="visualizer">
+            <div class="bars">
+                <div class="bar"></div>
+                <div class="bar"></div>
+                <div class="bar"></div>
+                <div class="bar"></div>
+                <div class="bar"></div>
+                <div class="bar"></div>
+                <div class="bar"></div>
+                <div class="bar"></div>
+                <div class="bar"></div>
+                <div class="bar"></div>
+            </div>
+        </div>
     </div>
 
+    <!-- Audio Element -->
+    <audio id="audioPlayer" preload="metadata"></audio>
 
-    <div class="bottom">
-        <input type="range" name="range" id="myProgressBar" min="30" value="20" max="100">
-        <div class="icons">
-            <!-- fontawesome icons -->
-            <i class="fas fa-3x fa-step-backward" id="previous"></i>
-            <i class="far fa-3x fa-play-circle" id="masterPlay"></i>
-            <i class="fas fa-3x fa-step-forward" id="next"></i> 
-        </div>
-        <div class="songInfo">
-            <img src="playing.gif" width="42px" alt="" id="gif"> <span id="Playing">Playing the song you selected...</span>
-        </div>
-    </div>
-    <script src="script.js"></script>
-    <script src="https://kit.fontawesome.com/26504e4a1f.js" crossorigin="anonymous"></script>
-</body>
-</html>
-
-
-
+    <!-- Scripts -->
+    <script src="js/musicData.js"></script>
+    <script src="js/player.js"></script>
+    <script src="js/ui.js"></script>
+    <script src="js/app.js"></script>
