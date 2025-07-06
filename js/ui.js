@@ -40,15 +40,24 @@ class UIManager {
             });
         });
 
-        // Search
-        this.searchInput.addEventListener('input', (e) => {
-            this.handleSearch(e.target.value);
-        });
+        // Search with improved functionality
+        if (this.searchInput) {
+            this.searchInput.addEventListener('input', (e) => {
+                this.handleSearch(e.target.value);
+            });
+
+            // Clear search when switching away from search section
+            this.searchInput.addEventListener('focus', () => {
+                this.switchSection('search');
+            });
+        }
 
         // Theme toggle
-        this.themeToggle.addEventListener('click', () => {
-            this.toggleTheme();
-        });
+        if (this.themeToggle) {
+            this.themeToggle.addEventListener('click', () => {
+                this.toggleTheme();
+            });
+        }
 
         // Library tabs
         this.libraryTabs.forEach(tab => {
@@ -96,6 +105,12 @@ class UIManager {
 
         // Load section-specific content
         switch (sectionName) {
+            case 'search':
+                // Focus search input when switching to search
+                if (this.searchInput) {
+                    setTimeout(() => this.searchInput.focus(), 100);
+                }
+                break;
             case 'library':
                 this.loadLibraryContent('recent');
                 break;
@@ -111,38 +126,85 @@ class UIManager {
     handleSearch(query) {
         clearTimeout(this.searchTimeout);
         
+        if (!this.searchResults) return;
+
         if (!query || query.length < 2) {
-            this.searchResults.innerHTML = '<p class="no-results">Start typing to search for music...</p>';
+            this.searchResults.innerHTML = `
+                <div class="search-empty">
+                    <i class="fas fa-search fa-3x"></i>
+                    <h3>Search for Tamil music</h3>
+                    <p>Find your favorite Tamil songs, artists, and albums</p>
+                </div>
+            `;
             return;
         }
+
+        // Show loading state
+        this.searchResults.innerHTML = `
+            <div class="loading">
+                <div class="spinner"></div>
+                <p>Searching...</p>
+            </div>
+        `;
 
         this.searchTimeout = setTimeout(() => {
             const results = musicData.searchSongs(query);
-            this.displaySearchResults(results);
+            this.displaySearchResults(results, query);
         }, 300);
     }
 
-    displaySearchResults(results) {
+    displaySearchResults(results, query) {
+        if (!this.searchResults) return;
+
         if (results.length === 0) {
-            this.searchResults.innerHTML = '<p class="no-results">No songs found matching your search.</p>';
+            this.searchResults.innerHTML = `
+                <div class="no-results">
+                    <i class="fas fa-music fa-3x"></i>
+                    <h3>No results found</h3>
+                    <p>No Tamil songs found for "${query}". Try searching for:</p>
+                    <ul class="search-suggestions">
+                        <li>A.R. Rahman</li>
+                        <li>Ilayaraja</li>
+                        <li>Anirudh</li>
+                        <li>Yuvan Shankar Raja</li>
+                        <li>Roja</li>
+                        <li>Ponniyin Selvan</li>
+                    </ul>
+                </div>
+            `;
             return;
         }
 
-        const resultsHTML = results.map(song => this.createSongItemHTML(song)).join('');
-        this.searchResults.innerHTML = `<div class="song-list">${resultsHTML}</div>`;
+        const resultsHTML = `
+            <div class="search-results-header">
+                <h3>Search Results for "${query}" (${results.length} songs)</h3>
+            </div>
+            <div class="song-list">
+                ${results.map((song, index) => this.createSongItemHTML(song, index + 1)).join('')}
+            </div>
+        `;
+
+        this.searchResults.innerHTML = resultsHTML;
         
         // Bind click events for search results
         this.bindSongEvents(this.searchResults);
     }
 
     loadFeaturedPlaylists() {
+        if (!this.featuredPlaylists) return;
+
         const playlistsHTML = musicData.featuredPlaylists.map(playlist => `
             <div class="playlist-card" data-playlist-id="${playlist.id}">
-                <img src="${playlist.image}" alt="${playlist.name}">
-                <h3>${playlist.name}</h3>
-                <p>${playlist.description}</p>
-                <div class="play-overlay">
-                    <i class="fas fa-play"></i>
+                <div class="playlist-image">
+                    <img src="${playlist.image}" alt="${playlist.name}">
+                    <div class="play-overlay">
+                        <i class="fas fa-play"></i>
+                    </div>
+                </div>
+                <div class="playlist-info">
+                    <h3>${playlist.name}</h3>
+                    <p>${playlist.description}</p>
+                    <span class="song-count">${playlist.songs.length} songs</span>
                 </div>
             </div>
         `).join('');
@@ -159,8 +221,11 @@ class UIManager {
     }
 
     loadPopularSongs() {
+        if (!this.popularSongs) return;
+
         const songsHTML = musicData.popularSongs.map((songId, index) => {
             const song = musicData.songs[songId];
+            if (!song) return '';
             return this.createSongItemHTML(song, index + 1);
         }).join('');
 
@@ -169,6 +234,8 @@ class UIManager {
     }
 
     createSongItemHTML(song, number = '') {
+        if (!song) return '';
+        
         const userData = musicData.getUserData();
         const isFavorite = userData.favorites.includes(song.id);
         
@@ -197,6 +264,8 @@ class UIManager {
     }
 
     bindSongEvents(container) {
+        if (!container) return;
+
         // Play song on click
         container.querySelectorAll('.song-item').forEach(item => {
             item.addEventListener('click', (e) => {
@@ -207,7 +276,7 @@ class UIManager {
                 const song = musicData.songs[songId];
                 const playlist = this.getCurrentPlaylist();
                 
-                if (musicPlayer) {
+                if (musicPlayer && song) {
                     musicPlayer.playSong(song, playlist);
                 }
             });
@@ -233,9 +302,9 @@ class UIManager {
     getCurrentPlaylist() {
         switch (this.currentSection) {
             case 'home':
-                return musicData.popularSongs.map(id => musicData.songs[id]);
+                return musicData.popularSongs.map(id => musicData.songs[id]).filter(Boolean);
             case 'search':
-                const searchQuery = this.searchInput.value;
+                const searchQuery = this.searchInput ? this.searchInput.value : '';
                 return musicData.searchSongs(searchQuery);
             case 'favorites':
                 const userData = musicData.getUserData();
@@ -286,11 +355,19 @@ class UIManager {
     }
 
     updateFavoritesList() {
+        if (!this.favoritesList) return;
+
         const userData = musicData.getUserData();
         const favoriteSongs = userData.favorites.map(id => musicData.songs[id]).filter(Boolean);
         
         if (favoriteSongs.length === 0) {
-            this.favoritesList.innerHTML = '<p class="no-results">No favorite songs yet. Start adding some!</p>';
+            this.favoritesList.innerHTML = `
+                <div class="empty-favorites">
+                    <i class="fas fa-heart fa-3x"></i>
+                    <h3>No favorite songs yet</h3>
+                    <p>Songs you like will appear here</p>
+                </div>
+            `;
             return;
         }
 
@@ -303,6 +380,8 @@ class UIManager {
     }
 
     loadLibraryContent(tabName) {
+        if (!this.libraryContent) return;
+
         // Update tab buttons
         this.libraryTabs.forEach(tab => {
             tab.classList.toggle('active', tab.dataset.tab === tabName);
@@ -315,7 +394,13 @@ class UIManager {
             case 'recent':
                 const recentSongs = userData.recentlyPlayed.map(id => musicData.songs[id]).filter(Boolean);
                 if (recentSongs.length === 0) {
-                    content = '<p class="no-results">No recently played songs.</p>';
+                    content = `
+                        <div class="empty-recent">
+                            <i class="fas fa-clock fa-3x"></i>
+                            <h3>No recently played songs</h3>
+                            <p>Start listening to see your recent tracks here</p>
+                        </div>
+                    `;
                 } else {
                     const songsHTML = recentSongs.slice(0, 20).map((song, index) => 
                         this.createSongItemHTML(song, index + 1)
@@ -349,14 +434,16 @@ class UIManager {
     getUniqueArtists() {
         const artists = new Map();
         Object.values(musicData.songs).forEach(song => {
-            if (!artists.has(song.artist)) {
-                artists.set(song.artist, {
-                    name: song.artist,
+            // Extract main artist name (before comma)
+            const mainArtist = song.artist.split(',')[0].trim();
+            if (!artists.has(mainArtist)) {
+                artists.set(mainArtist, {
+                    name: mainArtist,
                     image: song.artwork,
                     songs: []
                 });
             }
-            artists.get(song.artist).songs.push(song);
+            artists.get(mainArtist).songs.push(song);
         });
         return Array.from(artists.values());
     }
@@ -364,11 +451,11 @@ class UIManager {
     getUniqueAlbums() {
         const albums = new Map();
         Object.values(musicData.songs).forEach(song => {
-            const key = `${song.album}-${song.artist}`;
+            const key = `${song.album}-${song.artist.split(',')[0].trim()}`;
             if (!albums.has(key)) {
                 albums.set(key, {
                     name: song.album,
-                    artist: song.artist,
+                    artist: song.artist.split(',')[0].trim(),
                     image: song.artwork,
                     songs: []
                 });
@@ -404,6 +491,8 @@ class UIManager {
     }
 
     loadUserPlaylists() {
+        if (!this.userPlaylists) return;
+
         const userData = musicData.getUserData();
         
         if (userData.playlists.length === 0) {
@@ -411,7 +500,7 @@ class UIManager {
                 <div class="empty-playlists">
                     <i class="fas fa-music fa-3x"></i>
                     <h3>No playlists yet</h3>
-                    <p>Create your first playlist to organize your favorite songs</p>
+                    <p>Create your first playlist to organize your favorite Tamil songs</p>
                     <button class="btn-primary" id="createFirstPlaylist">
                         <i class="fas fa-plus"></i>
                         Create Your First Playlist
@@ -419,24 +508,34 @@ class UIManager {
                 </div>
             `;
             
-            document.getElementById('createFirstPlaylist')?.addEventListener('click', () => {
-                this.createPlaylist();
-            });
+            const createFirstBtn = document.getElementById('createFirstPlaylist');
+            if (createFirstBtn) {
+                createFirstBtn.addEventListener('click', () => {
+                    this.createPlaylist();
+                });
+            }
             return;
         }
 
         const playlistsHTML = userData.playlists.map(playlist => `
             <div class="playlist-card user-playlist" data-playlist-id="${playlist.id}">
-                <img src="${playlist.image || 'https://images.pexels.com/photos/1763075/pexels-photo-1763075.jpeg?auto=compress&cs=tinysrgb&w=300'}" alt="${playlist.name}">
-                <h3>${playlist.name}</h3>
-                <p>${playlist.songs.length} songs</p>
-                <div class="playlist-actions">
-                    <button class="btn-icon edit-playlist" data-playlist-id="${playlist.id}">
-                        <i class="fas fa-edit"></i>
-                    </button>
-                    <button class="btn-icon delete-playlist" data-playlist-id="${playlist.id}">
-                        <i class="fas fa-trash"></i>
-                    </button>
+                <div class="playlist-image">
+                    <img src="${playlist.image || 'https://images.pexels.com/photos/1763075/pexels-photo-1763075.jpeg?auto=compress&cs=tinysrgb&w=300'}" alt="${playlist.name}">
+                    <div class="play-overlay">
+                        <i class="fas fa-play"></i>
+                    </div>
+                </div>
+                <div class="playlist-info">
+                    <h3>${playlist.name}</h3>
+                    <p>${playlist.songs.length} songs</p>
+                    <div class="playlist-actions">
+                        <button class="btn-icon edit-playlist" data-playlist-id="${playlist.id}" title="Edit playlist">
+                            <i class="fas fa-edit"></i>
+                        </button>
+                        <button class="btn-icon delete-playlist" data-playlist-id="${playlist.id}" title="Delete playlist">
+                            <i class="fas fa-trash"></i>
+                        </button>
+                    </div>
                 </div>
             </div>
         `).join('');
@@ -446,6 +545,8 @@ class UIManager {
     }
 
     bindPlaylistEvents() {
+        if (!this.userPlaylists) return;
+
         // Play playlist
         this.userPlaylists.querySelectorAll('.user-playlist').forEach(card => {
             card.addEventListener('click', (e) => {
@@ -475,20 +576,24 @@ class UIManager {
 
     createPlaylist() {
         const name = prompt('Enter playlist name:');
-        if (!name) return;
+        if (!name || name.trim() === '') return;
 
         const userData = musicData.getUserData();
         const newPlaylist = {
             id: 'playlist_' + Date.now(),
-            name: name,
+            name: name.trim(),
             songs: [],
-            createdAt: new Date().toISOString()
+            createdAt: new Date().toISOString(),
+            image: 'https://images.pexels.com/photos/1763075/pexels-photo-1763075.jpeg?auto=compress&cs=tinysrgb&w=300'
         };
 
         userData.playlists.push(newPlaylist);
         musicData.saveUserData(userData);
         
         this.loadUserPlaylists();
+        
+        // Show success message
+        this.showToast('Playlist created successfully!', 'success');
     }
 
     editPlaylist(playlistId) {
@@ -497,12 +602,13 @@ class UIManager {
         if (!playlist) return;
 
         const newName = prompt('Enter new playlist name:', playlist.name);
-        if (!newName) return;
+        if (!newName || newName.trim() === '') return;
 
-        playlist.name = newName;
+        playlist.name = newName.trim();
         musicData.saveUserData(userData);
         
         this.loadUserPlaylists();
+        this.showToast('Playlist updated successfully!', 'success');
     }
 
     deletePlaylist(playlistId) {
@@ -513,12 +619,16 @@ class UIManager {
         musicData.saveUserData(userData);
         
         this.loadUserPlaylists();
+        this.showToast('Playlist deleted successfully!', 'success');
     }
 
     playUserPlaylist(playlistId) {
         const userData = musicData.getUserData();
         const playlist = userData.playlists.find(p => p.id === playlistId);
-        if (!playlist || playlist.songs.length === 0) return;
+        if (!playlist || playlist.songs.length === 0) {
+            this.showToast('This playlist is empty!', 'warning');
+            return;
+        }
 
         const songs = playlist.songs.map(id => musicData.songs[id]).filter(Boolean);
         if (songs.length > 0 && musicPlayer) {
@@ -530,13 +640,16 @@ class UIManager {
         const userData = musicData.getUserData();
         
         if (userData.playlists.length === 0) {
-            alert('Create a playlist first!');
+            if (confirm('You need to create a playlist first. Would you like to create one now?')) {
+                this.createPlaylist();
+            }
             return;
         }
 
         // Simple implementation - in a real app, you'd show a proper modal
-        const playlistNames = userData.playlists.map(p => p.name);
-        const selectedPlaylist = prompt(`Add to playlist:\n${playlistNames.map((name, i) => `${i + 1}. ${name}`).join('\n')}\n\nEnter playlist number:`);
+        const playlistNames = userData.playlists.map((p, i) => `${i + 1}. ${p.name}`);
+        const message = `Add to playlist:\n\n${playlistNames.join('\n')}\n\nEnter playlist number:`;
+        const selectedPlaylist = prompt(message);
         
         if (!selectedPlaylist) return;
         
@@ -546,9 +659,9 @@ class UIManager {
             if (!playlist.songs.includes(songId)) {
                 playlist.songs.push(songId);
                 musicData.saveUserData(userData);
-                alert('Song added to playlist!');
+                this.showToast('Song added to playlist!', 'success');
             } else {
-                alert('Song is already in this playlist!');
+                this.showToast('Song is already in this playlist!', 'warning');
             }
         }
     }
@@ -560,8 +673,10 @@ class UIManager {
         document.documentElement.setAttribute('data-theme', newTheme);
         
         // Update icon
-        const icon = this.themeToggle.querySelector('i');
-        icon.className = newTheme === 'light' ? 'fas fa-sun' : 'fas fa-moon';
+        if (this.themeToggle) {
+            const icon = this.themeToggle.querySelector('i');
+            icon.className = newTheme === 'light' ? 'fas fa-sun' : 'fas fa-moon';
+        }
         
         // Save preference
         const userData = musicData.getUserData();
@@ -575,8 +690,43 @@ class UIManager {
         
         document.documentElement.setAttribute('data-theme', theme);
         
-        const icon = this.themeToggle.querySelector('i');
-        icon.className = theme === 'light' ? 'fas fa-sun' : 'fas fa-moon';
+        if (this.themeToggle) {
+            const icon = this.themeToggle.querySelector('i');
+            icon.className = theme === 'light' ? 'fas fa-sun' : 'fas fa-moon';
+        }
+    }
+
+    showToast(message, type = 'info') {
+        const toast = document.createElement('div');
+        toast.className = `toast ${type}`;
+        toast.textContent = message;
+        
+        const colors = {
+            success: '#1db954',
+            warning: '#ffa500',
+            error: '#e22134',
+            info: '#1db954'
+        };
+        
+        toast.style.cssText = `
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            background: ${colors[type]};
+            color: white;
+            padding: 12px 24px;
+            border-radius: 8px;
+            z-index: 10000;
+            animation: slideIn 0.3s ease-out;
+            box-shadow: 0 4px 16px rgba(0, 0, 0, 0.2);
+        `;
+
+        document.body.appendChild(toast);
+
+        setTimeout(() => {
+            toast.style.animation = 'slideOut 0.3s ease-out';
+            setTimeout(() => toast.remove(), 300);
+        }, 3000);
     }
 }
 
