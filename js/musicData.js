@@ -39,7 +39,7 @@ const musicData = {
             album: 'Vande Mataram',
             duration: '7:05',
             artwork: 'https://images.pexels.com/photos/1763075/pexels-photo-1763075.jpeg?auto=compress&cs=tinysrgb&w=300',
-            url: 'https://www.soundjay.com/misc/sounds/bell-ringing-05.mp3',
+            url: 'songs/1.mp3',
             genre: 'Patriotic'
         },
         song2: {
@@ -49,7 +49,7 @@ const musicData = {
             album: 'Slumdog Millionaire',
             duration: '5:09',
             artwork: 'https://images.pexels.com/photos/1763075/pexels-photo-1763075.jpeg?auto=compress&cs=tinysrgb&w=300',
-            url: 'https://www.soundjay.com/misc/sounds/bell-ringing-04.mp3',
+            url: 'songs/2.mp3',
             genre: 'Film Music'
         },
         song3: {
@@ -59,7 +59,7 @@ const musicData = {
             album: 'Roja',
             duration: '4:32',
             artwork: 'https://images.pexels.com/photos/1552252/pexels-photo-1552252.jpeg?auto=compress&cs=tinysrgb&w=300',
-            url: 'https://www.soundjay.com/misc/sounds/bell-ringing-03.mp3',
+            url: 'songs/3.mp3',
             genre: 'Melody'
         },
         song4: {
@@ -69,7 +69,7 @@ const musicData = {
             album: 'Roja',
             duration: '5:15',
             artwork: 'https://images.pexels.com/photos/1763075/pexels-photo-1763075.jpeg?auto=compress&cs=tinysrgb&w=300',
-            url: 'https://www.soundjay.com/misc/sounds/bell-ringing-02.mp3',
+            url: 'songs/4.mp3',
             genre: 'Romance'
         },
         song5: {
@@ -79,7 +79,7 @@ const musicData = {
             album: '3',
             duration: '4:02',
             artwork: 'https://images.pexels.com/photos/1190297/pexels-photo-1190297.jpeg?auto=compress&cs=tinysrgb&w=300',
-            url: 'https://www.soundjay.com/misc/sounds/bell-ringing-01.mp3',
+            url: 'songs/5.mp3',
             genre: 'Folk Pop'
         },
         song6: {
@@ -89,7 +89,7 @@ const musicData = {
             album: 'Sakalakalavallavan',
             duration: '4:45',
             artwork: 'https://images.pexels.com/photos/1552252/pexels-photo-1552252.jpeg?auto=compress&cs=tinysrgb&w=300',
-            url: 'https://www.soundjay.com/misc/sounds/bell-ringing-06.mp3',
+            url: 'songs/6.mp3',
             genre: 'Classical'
         },
         song7: {
@@ -99,7 +99,7 @@ const musicData = {
             album: 'Kadhal Desam',
             duration: '6:12',
             artwork: 'https://images.pexels.com/photos/1763075/pexels-photo-1763075.jpeg?auto=compress&cs=tinysrgb&w=300',
-            url: 'https://www.soundjay.com/misc/sounds/bell-ringing-07.mp3',
+            url: 'songs/7.mp3',
             genre: 'Qawwali'
         },
         song8: {
@@ -109,7 +109,7 @@ const musicData = {
             album: 'Achcham Yenbadhu Madamaiyada',
             duration: '4:28',
             artwork: 'https://images.pexels.com/photos/1190297/pexels-photo-1190297.jpeg?auto=compress&cs=tinysrgb&w=300',
-            url: 'https://www.soundjay.com/misc/sounds/bell-ringing-08.mp3',
+            url: 'songs/8.mp3',
             genre: 'Melody'
         },
         song9: {
@@ -119,7 +119,7 @@ const musicData = {
             album: 'Mouna Ragam',
             duration: '4:55',
             artwork: 'https://images.pexels.com/photos/1552252/pexels-photo-1552252.jpeg?auto=compress&cs=tinysrgb&w=300',
-            url: 'https://www.soundjay.com/misc/sounds/bell-ringing-09.mp3',
+            url: 'songs/9.mp3',
             genre: 'Romance'
         },
         song10: {
@@ -129,7 +129,7 @@ const musicData = {
             album: 'Dil Se',
             duration: '5:33',
             artwork: 'https://images.pexels.com/photos/1763075/pexels-photo-1763075.jpeg?auto=compress&cs=tinysrgb&w=300',
-            url: 'https://www.soundjay.com/misc/sounds/bell-ringing-10.mp3',
+            url: 'songs/10.mp3',
             genre: 'Sufi'
         },
         song11: {
