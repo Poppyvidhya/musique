@@ -10,6 +10,7 @@ class MusicPlayer {
         this.volume = 0.7;
         this.userData = musicData.getUserData();
         this.isLoading = false;
+        this.isSeekingProgress = false;
         
         this.initializeElements();
         this.bindEvents();
@@ -156,42 +157,56 @@ class MusicPlayer {
 
     async loadAudio(url) {
         return new Promise((resolve, reject) => {
+            // Clear any existing source
+            this.audio.src = '';
+            this.audio.load();
+            
+            // Set new source
             this.audio.src = url;
             
             const onCanPlay = () => {
                 this.audio.removeEventListener('canplay', onCanPlay);
                 this.audio.removeEventListener('error', onError);
+                this.audio.removeEventListener('abort', onError);
                 this.hideLoadingState();
                 
                 // Auto-play the song
-                this.audio.play().then(() => {
+                const playPromise = this.audio.play();
+                if (playPromise !== undefined) {
+                    playPromise.then(() => {
+                        resolve();
+                    }).catch(error => {
+                        console.error('Playback failed:', error);
+                        this.handlePlaybackError();
+                        reject(error);
+                    });
+                } else {
                     resolve();
-                }).catch(error => {
-                    console.error('Playback failed:', error);
-                    this.handlePlaybackError();
-                    reject(error);
-                });
+                }
             };
             
             const onError = (error) => {
                 this.audio.removeEventListener('canplay', onCanPlay);
                 this.audio.removeEventListener('error', onError);
+                this.audio.removeEventListener('abort', onError);
                 this.hideLoadingState();
+                console.error('Audio loading error:', error);
                 reject(error);
             };
             
             this.audio.addEventListener('canplay', onCanPlay);
             this.audio.addEventListener('error', onError);
+            this.audio.addEventListener('abort', onError);
             
             // Start loading
             this.audio.load();
             
-            // Timeout after 10 seconds
+            // Timeout after 15 seconds
             setTimeout(() => {
                 if (this.isLoading) {
                     onError(new Error('Loading timeout'));
                 }
-            }, 10000);
+            }, 15000);
         });
     }
 
@@ -207,10 +222,13 @@ class MusicPlayer {
         if (this.isPlaying) {
             this.audio.pause();
         } else {
-            this.audio.play().catch(error => {
-                console.error('Error playing audio:', error);
-                this.handlePlaybackError();
-            });
+            const playPromise = this.audio.play();
+            if (playPromise !== undefined) {
+                playPromise.catch(error => {
+                    console.error('Error playing audio:', error);
+                    this.handlePlaybackError();
+                });
+            }
         }
     }
 
@@ -324,6 +342,7 @@ class MusicPlayer {
     onLoadStart() {
         this.isLoading = true;
         this.showLoadingState();
+        console.log('Audio loading started');
     }
 
     onLoadedData() {
@@ -333,27 +352,34 @@ class MusicPlayer {
     onCanPlay() {
         this.isLoading = false;
         this.hideLoadingState();
+        console.log('Audio can play');
     }
 
     onWaiting() {
         this.showLoadingState();
+        console.log('Audio waiting for data');
     }
 
     onPlaying() {
         this.hideLoadingState();
+        console.log('Audio playing');
     }
 
     showLoadingState() {
-        this.playBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i>';
-        this.playBtn.disabled = true;
+        if (this.playBtn) {
+            this.playBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i>';
+            this.playBtn.disabled = true;
+        }
     }
 
     hideLoadingState() {
-        this.playBtn.disabled = false;
-        if (this.isPlaying) {
-            this.playBtn.innerHTML = '<i class="fas fa-pause"></i>';
-        } else {
-            this.playBtn.innerHTML = '<i class="fas fa-play"></i>';
+        if (this.playBtn) {
+            this.playBtn.disabled = false;
+            if (this.isPlaying) {
+                this.playBtn.innerHTML = '<i class="fas fa-pause"></i>';
+            } else {
+                this.playBtn.innerHTML = '<i class="fas fa-play"></i>';
+            }
         }
     }
 
@@ -376,7 +402,13 @@ class MusicPlayer {
         document.querySelectorAll('.song-item').forEach(item => {
             item.classList.remove('playing');
             const playIcon = item.querySelector('.play-indicator');
-            if (playIcon) playIcon.remove();
+            if (playIcon) {
+                const songNumber = item.querySelector('.song-number');
+                if (songNumber) {
+                    const index = Array.from(item.parentNode.children).indexOf(item) + 1;
+                    songNumber.innerHTML = index;
+                }
+            }
         });
         
         // Add playing indicator to current song
@@ -387,7 +419,7 @@ class MusicPlayer {
                 
                 // Add play indicator
                 const songNumber = currentSongElement.querySelector('.song-number');
-                if (songNumber && !songNumber.querySelector('.play-indicator')) {
+                if (songNumber) {
                     songNumber.innerHTML = '<i class="fas fa-volume-up play-indicator"></i>';
                 }
             }
@@ -395,13 +427,13 @@ class MusicPlayer {
     }
 
     updateDuration() {
-        if (this.audio.duration && !isNaN(this.audio.duration)) {
+        if (this.audio.duration && !isNaN(this.audio.duration) && this.audio.duration !== Infinity) {
             this.totalTimeEl.textContent = this.formatTime(this.audio.duration);
         }
     }
 
     updateProgress() {
-        if (this.audio.duration && !this.isSeekingProgress) {
+        if (this.audio.duration && !this.isSeekingProgress && !isNaN(this.audio.duration) && this.audio.duration !== Infinity) {
             const progress = (this.audio.currentTime / this.audio.duration) * 100;
             this.progressSlider.value = progress;
             

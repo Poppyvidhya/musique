@@ -1,4 +1,4 @@
-// Tamil Music Data with real online streaming URLs
+// Tamil Music Data with working audio streaming URLs
 const musicData = {
     featuredPlaylists: [
         {
@@ -39,7 +39,7 @@ const musicData = {
             album: 'Vande Mataram',
             duration: '7:05',
             artwork: 'https://images.pexels.com/photos/1763075/pexels-photo-1763075.jpeg?auto=compress&cs=tinysrgb&w=300',
-            url: 'https://www.soundjay.com/misc/sounds/bell-ringing-05.wav',
+            url: 'https://commondatastorage.googleapis.com/codeskulptor-demos/DDR_assets/Kangaroo_MusiQue.ogg',
             genre: 'Patriotic'
         },
         song2: {
@@ -49,7 +49,7 @@ const musicData = {
             album: 'Slumdog Millionaire',
             duration: '5:09',
             artwork: 'https://images.pexels.com/photos/1763075/pexels-photo-1763075.jpeg?auto=compress&cs=tinysrgb&w=300',
-            url: 'https://www.soundjay.com/misc/sounds/bell-ringing-04.wav',
+            url: 'https://commondatastorage.googleapis.com/codeskulptor-assets/Epoq-Lepidoptera.ogg',
             genre: 'Film Music'
         },
         song3: {
@@ -59,7 +59,7 @@ const musicData = {
             album: 'Roja',
             duration: '4:32',
             artwork: 'https://images.pexels.com/photos/1552252/pexels-photo-1552252.jpeg?auto=compress&cs=tinysrgb&w=300',
-            url: 'https://www.soundjay.com/misc/sounds/bell-ringing-03.wav',
+            url: 'https://commondatastorage.googleapis.com/codeskulptor-demos/DDR_assets/Sevish_-__nbsp_.ogg',
             genre: 'Melody'
         },
         song4: {
@@ -69,7 +69,7 @@ const musicData = {
             album: 'Roja',
             duration: '5:15',
             artwork: 'https://images.pexels.com/photos/1763075/pexels-photo-1763075.jpeg?auto=compress&cs=tinysrgb&w=300',
-            url: 'https://www.soundjay.com/misc/sounds/bell-ringing-02.wav',
+            url: 'https://commondatastorage.googleapis.com/codeskulptor-demos/pang/paza-moduless.mp3',
             genre: 'Romance'
         },
         song5: {
@@ -79,7 +79,7 @@ const musicData = {
             album: '3',
             duration: '4:02',
             artwork: 'https://images.pexels.com/photos/1190297/pexels-photo-1190297.jpeg?auto=compress&cs=tinysrgb&w=300',
-            url: 'https://www.soundjay.com/misc/sounds/bell-ringing-01.wav',
+            url: 'https://commondatastorage.googleapis.com/codeskulptor-demos/riceracer_assets/music/start.ogg',
             genre: 'Folk Pop'
         },
         song6: {
@@ -89,7 +89,7 @@ const musicData = {
             album: 'Sakalakalavallavan',
             duration: '4:45',
             artwork: 'https://images.pexels.com/photos/1552252/pexels-photo-1552252.jpeg?auto=compress&cs=tinysrgb&w=300',
-            url: 'https://www.soundjay.com/misc/sounds/bell-ringing-06.wav',
+            url: 'https://commondatastorage.googleapis.com/codeskulptor-demos/riceracer_assets/music/menu.ogg',
             genre: 'Classical'
         },
         song7: {
@@ -99,7 +99,7 @@ const musicData = {
             album: 'Kadhal Desam',
             duration: '6:12',
             artwork: 'https://images.pexels.com/photos/1763075/pexels-photo-1763075.jpeg?auto=compress&cs=tinysrgb&w=300',
-            url: 'https://www.soundjay.com/misc/sounds/bell-ringing-07.wav',
+            url: 'https://commondatastorage.googleapis.com/codeskulptor-demos/riceracer_assets/music/race1.ogg',
             genre: 'Qawwali'
         },
         song8: {
@@ -109,7 +109,7 @@ const musicData = {
             album: 'Achcham Yenbadhu Madamaiyada',
             duration: '4:28',
             artwork: 'https://images.pexels.com/photos/1190297/pexels-photo-1190297.jpeg?auto=compress&cs=tinysrgb&w=300',
-            url: 'https://www.soundjay.com/misc/sounds/bell-ringing-08.wav',
+            url: 'https://commondatastorage.googleapis.com/codeskulptor-demos/riceracer_assets/music/race2.ogg',
             genre: 'Melody'
         },
         song9: {
@@ -119,7 +119,7 @@ const musicData = {
             album: 'Mouna Ragam',
             duration: '4:55',
             artwork: 'https://images.pexels.com/photos/1552252/pexels-photo-1552252.jpeg?auto=compress&cs=tinysrgb&w=300',
-            url: 'https://www.soundjay.com/misc/sounds/bell-ringing-09.wav',
+            url: 'https://commondatastorage.googleapis.com/codeskulptor-assets/week7-brrring.m4a',
             genre: 'Romance'
         },
         song10: {
@@ -129,7 +129,7 @@ const musicData = {
             album: 'Dil Se',
             duration: '5:33',
             artwork: 'https://images.pexels.com/photos/1763075/pexels-photo-1763075.jpeg?auto=compress&cs=tinysrgb&w=300',
-            url: 'https://www.soundjay.com/misc/sounds/bell-ringing-10.wav',
+            url: 'https://commondatastorage.googleapis.com/codeskulptor-assets/week7-button1.m4a',
             genre: 'Sufi'
         },
         song11: {
@@ -139,7 +139,7 @@ const musicData = {
             album: 'Vivegam',
             duration: '3:45',
             artwork: 'https://images.pexels.com/photos/1190297/pexels-photo-1190297.jpeg?auto=compress&cs=tinysrgb&w=300',
-            url: 'https://www.soundjay.com/misc/sounds/bell-ringing-11.wav',
+            url: 'https://commondatastorage.googleapis.com/codeskulptor-assets/sounddogs/soundtrack.ogg',
             genre: 'Hip Hop'
         },
         song12: {
@@ -149,7 +149,7 @@ const musicData = {
             album: 'Keladi Kanmani',
             duration: '4:18',
             artwork: 'https://images.pexels.com/photos/1552252/pexels-photo-1552252.jpeg?auto=compress&cs=tinysrgb&w=300',
-            url: 'https://www.soundjay.com/misc/sounds/bell-ringing-12.wav',
+            url: 'https://commondatastorage.googleapis.com/codeskulptor-demos/DDR_assets/Kangaroo_MusiQue.ogg',
             genre: 'Classical'
         },
         song13: {
@@ -159,7 +159,7 @@ const musicData = {
             album: 'Vaaranam Aayiram',
             duration: '4:12',
             artwork: 'https://images.pexels.com/photos/1105666/pexels-photo-1105666.jpeg?auto=compress&cs=tinysrgb&w=300',
-            url: 'https://www.soundjay.com/misc/sounds/bell-ringing-13.wav',
+            url: 'https://commondatastorage.googleapis.com/codeskulptor-assets/Epoq-Lepidoptera.ogg',
             genre: 'Pop'
         },
         song14: {
@@ -169,7 +169,7 @@ const musicData = {
             album: 'Kaththi',
             duration: '2:58',
             artwork: 'https://images.pexels.com/photos/1190297/pexels-photo-1190297.jpeg?auto=compress&cs=tinysrgb&w=300',
-            url: 'https://www.soundjay.com/misc/sounds/bell-ringing-14.wav',
+            url: 'https://commondatastorage.googleapis.com/codeskulptor-demos/DDR_assets/Sevish_-__nbsp_.ogg',
             genre: 'Theme'
         },
         song15: {
@@ -179,7 +179,7 @@ const musicData = {
             album: 'Thalapathi',
             duration: '5:02',
             artwork: 'https://images.pexels.com/photos/1552252/pexels-photo-1552252.jpeg?auto=compress&cs=tinysrgb&w=300',
-            url: 'https://www.soundjay.com/misc/sounds/bell-ringing-15.wav',
+            url: 'https://commondatastorage.googleapis.com/codeskulptor-demos/pang/paza-moduless.mp3',
             genre: 'Duet'
         },
         song16: {
@@ -189,7 +189,7 @@ const musicData = {
             album: 'Yaaradi Nee Mohini',
             duration: '4:35',
             artwork: 'https://images.pexels.com/photos/1105666/pexels-photo-1105666.jpeg?auto=compress&cs=tinysrgb&w=300',
-            url: 'https://www.soundjay.com/misc/sounds/bell-ringing-16.wav',
+            url: 'https://commondatastorage.googleapis.com/codeskulptor-demos/riceracer_assets/music/start.ogg',
             genre: 'Romance'
         },
         song17: {
@@ -199,7 +199,7 @@ const musicData = {
             album: 'Maari',
             duration: '3:52',
             artwork: 'https://images.pexels.com/photos/1190297/pexels-photo-1190297.jpeg?auto=compress&cs=tinysrgb&w=300',
-            url: 'https://www.soundjay.com/misc/sounds/bell-ringing-17.wav',
+            url: 'https://commondatastorage.googleapis.com/codeskulptor-demos/riceracer_assets/music/menu.ogg',
             genre: 'Kuthu'
         },
         song18: {
@@ -209,7 +209,7 @@ const musicData = {
             album: 'Vallavan',
             duration: '4:22',
             artwork: 'https://images.pexels.com/photos/1105666/pexels-photo-1105666.jpeg?auto=compress&cs=tinysrgb&w=300',
-            url: 'https://www.soundjay.com/misc/sounds/bell-ringing-18.wav',
+            url: 'https://commondatastorage.googleapis.com/codeskulptor-demos/riceracer_assets/music/race1.ogg',
             genre: 'Melody'
         },
         song19: {
@@ -219,7 +219,7 @@ const musicData = {
             album: 'Enthiran',
             duration: '4:48',
             artwork: 'https://images.pexels.com/photos/1105666/pexels-photo-1105666.jpeg?auto=compress&cs=tinysrgb&w=300',
-            url: 'https://www.soundjay.com/misc/sounds/bell-ringing-19.wav',
+            url: 'https://commondatastorage.googleapis.com/codeskulptor-demos/riceracer_assets/music/race2.ogg',
             genre: 'Romance'
         },
         song20: {
@@ -229,7 +229,7 @@ const musicData = {
             album: 'Paiya',
             duration: '4:15',
             artwork: 'https://images.pexels.com/photos/1105666/pexels-photo-1105666.jpeg?auto=compress&cs=tinysrgb&w=300',
-            url: 'https://www.soundjay.com/misc/sounds/bell-ringing-20.wav',
+            url: 'https://commondatastorage.googleapis.com/codeskulptor-assets/week7-brrring.m4a',
             genre: 'Hip Hop'
         },
         song21: {
@@ -239,7 +239,7 @@ const musicData = {
             album: 'Ponniyin Selvan',
             duration: '4:23',
             artwork: 'https://images.pexels.com/photos/1763075/pexels-photo-1763075.jpeg?auto=compress&cs=tinysrgb&w=300',
-            url: 'https://www.soundjay.com/misc/sounds/bell-ringing-21.wav',
+            url: 'https://commondatastorage.googleapis.com/codeskulptor-assets/week7-button1.m4a',
             genre: 'Epic'
         },
         song22: {
@@ -249,7 +249,7 @@ const musicData = {
             album: 'Ponniyin Selvan',
             duration: '4:12',
             artwork: 'https://images.pexels.com/photos/1763075/pexels-photo-1763075.jpeg?auto=compress&cs=tinysrgb&w=300',
-            url: 'https://www.soundjay.com/misc/sounds/bell-ringing-22.wav',
+            url: 'https://commondatastorage.googleapis.com/codeskulptor-assets/sounddogs/soundtrack.ogg',
             genre: 'Classical'
         },
         song23: {
@@ -259,7 +259,7 @@ const musicData = {
             album: 'Ponniyin Selvan',
             duration: '3:56',
             artwork: 'https://images.pexels.com/photos/1763075/pexels-photo-1763075.jpeg?auto=compress&cs=tinysrgb&w=300',
-            url: 'https://www.soundjay.com/misc/sounds/bell-ringing-23.wav',
+            url: 'https://commondatastorage.googleapis.com/codeskulptor-demos/DDR_assets/Kangaroo_MusiQue.ogg',
             genre: 'Folk'
         },
         song24: {
@@ -269,7 +269,7 @@ const musicData = {
             album: 'Ponniyin Selvan',
             duration: '4:44',
             artwork: 'https://images.pexels.com/photos/1763075/pexels-photo-1763075.jpeg?auto=compress&cs=tinysrgb&w=300',
-            url: 'https://www.soundjay.com/misc/sounds/bell-ringing-24.wav',
+            url: 'https://commondatastorage.googleapis.com/codeskulptor-assets/Epoq-Lepidoptera.ogg',
             genre: 'War Song'
         },
         song25: {
@@ -279,7 +279,7 @@ const musicData = {
             album: 'Master',
             duration: '3:28',
             artwork: 'https://images.pexels.com/photos/1190297/pexels-photo-1190297.jpeg?auto=compress&cs=tinysrgb&w=300',
-            url: 'https://www.soundjay.com/misc/sounds/bell-ringing-25.wav',
+            url: 'https://commondatastorage.googleapis.com/codeskulptor-demos/DDR_assets/Sevish_-__nbsp_.ogg',
             genre: 'Mass'
         }
     },
