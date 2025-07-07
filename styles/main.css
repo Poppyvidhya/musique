@@ -219,6 +219,12 @@ body {
     transform: scale(1.05);
 }
 
+.btn-icon:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+    transform: none;
+}
+
 .btn-primary {
     padding: 12px 24px;
     border: none;
@@ -290,7 +296,8 @@ body {
 .no-results,
 .empty-favorites,
 .empty-recent,
-.empty-playlists {
+.empty-playlists,
+.empty-queue {
     text-align: center;
     padding: 48px 24px;
     color: var(--text-secondary);
@@ -300,7 +307,8 @@ body {
 .no-results i,
 .empty-favorites i,
 .empty-recent i,
-.empty-playlists i {
+.empty-playlists i,
+.empty-queue i {
     color: var(--text-secondary);
     margin-bottom: 16px;
     opacity: 0.5;
@@ -481,14 +489,29 @@ body {
     border-bottom: none;
 }
 
+.song-item.playing {
+    background: rgba(29, 185, 84, 0.1);
+}
+
 .song-number {
     color: var(--text-secondary);
     font-weight: 500;
     text-align: center;
+    font-size: 14px;
 }
 
 .song-item.playing .song-number {
     color: var(--primary-color);
+}
+
+.play-indicator {
+    color: var(--primary-color);
+    animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.5; }
 }
 
 .song-info {
@@ -797,6 +820,7 @@ body {
     cursor: pointer;
     transition: var(--transition);
     margin-bottom: 8px;
+    position: relative;
 }
 
 .queue-item:hover {
@@ -804,8 +828,8 @@ body {
 }
 
 .queue-item.active {
-    background: var(--primary-color);
-    color: white;
+    background: rgba(29, 185, 84, 0.1);
+    border: 1px solid var(--primary-color);
 }
 
 .queue-item img {
@@ -839,6 +863,15 @@ body {
 .queue-song-duration {
     font-size: 12px;
     color: var(--text-secondary);
+}
+
+.queue-playing {
+    position: absolute;
+    right: 8px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: var(--primary-color);
+    animation: pulse 2s infinite;
 }
 
 /* Visualizer */
@@ -1030,31 +1063,31 @@ body {
     }
 }
 
-@keyframes slideIn {
+@keyframes slideInRight {
     from {
         transform: translateX(100%);
+        opacity: 0;
     }
     to {
         transform: translateX(0);
+        opacity: 1;
     }
 }
 
-@keyframes slideOut {
+@keyframes slideOutRight {
     from {
         transform: translateX(0);
+        opacity: 1;
     }
     to {
         transform: translateX(100%);
+        opacity: 0;
     }
 }
 
-@keyframes pulse {
-    0%, 100% {
-        transform: scale(1);
-    }
-    50% {
-        transform: scale(1.05);
-    }
+@keyframes spin {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
 }
 
 .fade-in {
@@ -1062,11 +1095,7 @@ body {
 }
 
 .slide-in {
-    animation: slideIn 0.3s ease-out;
-}
-
-.pulse {
-    animation: pulse 2s infinite;
+    animation: slideInRight 0.3s ease-out;
 }
 
 /* Loading States */
@@ -1084,11 +1113,6 @@ body {
     border-top: 3px solid var(--primary-color);
     border-radius: 50%;
     animation: spin 1s linear infinite;
-}
-
-@keyframes spin {
-    0% { transform: rotate(0deg); }
-    100% { transform: rotate(360deg); }
 }
 
 /* Scrollbar Styling */
@@ -1151,4 +1175,37 @@ body {
     color: var(--text-secondary);
     padding: 48px;
     font-size: 16px;
+}
+
+/* Active states for controls */
+.btn-icon.active {
+    color: var(--primary-color);
+    background: rgba(29, 185, 84, 0.1);
+}
+
+.control-buttons .btn-icon.active {
+    color: var(--primary-color);
+}
+
+/* Toast animations */
+@keyframes slideInRight {
+    from {
+        transform: translateX(100%);
+        opacity: 0;
+    }
+    to {
+        transform: translateX(0);
+        opacity: 1;
+    }
+}
+
+@keyframes slideOutRight {
+    from {
+        transform: translateX(0);
+        opacity: 1;
+    }
+    to {
+        transform: translateX(100%);
+        opacity: 0;
+    }
 }
