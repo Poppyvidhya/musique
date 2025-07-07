@@ -157,6 +157,8 @@ class MusicPlayer {
 
     async loadAudio(url) {
         return new Promise((resolve, reject) => {
+            console.log('Loading audio from:', url);
+            
             // Clear any existing source
             this.audio.src = '';
             this.audio.load();
@@ -164,11 +166,17 @@ class MusicPlayer {
             // Set new source
             this.audio.src = url;
             
+            // Set audio properties for better compatibility
+            this.audio.crossOrigin = 'anonymous';
+            this.audio.preload = 'auto';
+            
             const onCanPlay = () => {
                 this.audio.removeEventListener('canplay', onCanPlay);
                 this.audio.removeEventListener('error', onError);
                 this.audio.removeEventListener('abort', onError);
                 this.hideLoadingState();
+                
+                console.log('Audio can play, attempting to start playback');
                 
                 // Auto-play the song
                 const playPromise = this.audio.play();
@@ -177,7 +185,7 @@ class MusicPlayer {
                         resolve();
                     }).catch(error => {
                         console.error('Playback failed:', error);
-                        this.handlePlaybackError();
+                        // Don't call handlePlaybackError here, just reject
                         reject(error);
                     });
                 } else {
@@ -190,7 +198,7 @@ class MusicPlayer {
                 this.audio.removeEventListener('error', onError);
                 this.audio.removeEventListener('abort', onError);
                 this.hideLoadingState();
-                console.error('Audio loading error:', error);
+                console.error('Audio loading error:', error, 'URL:', url);
                 reject(error);
             };
             
@@ -198,15 +206,21 @@ class MusicPlayer {
             this.audio.addEventListener('error', onError);
             this.audio.addEventListener('abort', onError);
             
+            // Add additional event listeners for debugging
+            this.audio.addEventListener('loadstart', () => console.log('Load start'));
+            this.audio.addEventListener('loadeddata', () => console.log('Data loaded'));
+            this.audio.addEventListener('loadedmetadata', () => console.log('Metadata loaded'));
+            
             // Start loading
             this.audio.load();
             
-            // Timeout after 15 seconds
+            // Timeout after 10 seconds
             setTimeout(() => {
                 if (this.isLoading) {
+                    console.log('Audio loading timeout');
                     onError(new Error('Loading timeout'));
                 }
-            }, 15000);
+            }, 10000);
         });
     }
 
